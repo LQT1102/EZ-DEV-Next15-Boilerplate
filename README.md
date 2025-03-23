@@ -1,0 +1,1 @@
+# EZ-DEV-Next15-Boilerplate
