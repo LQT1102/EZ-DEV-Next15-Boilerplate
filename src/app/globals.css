@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  @apply text-base-content bg-base-100;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+
+.modal-box-custom{
+  @apply modal-box bg-base-200
+}
+
+
+:root:has(:is(.modal-open, .modal:target, .modal-toggle:checked + .modal, .modal[open])){
+scrollbar-gutter: auto;
+}
