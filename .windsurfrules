@@ -1,0 +1,143 @@
+# Windsurf Rules for This Project
+
+## Coding Standards
+- /memory-bank - Project documentation and specifications
+- Automatically update the "Components" section in this rule file when there is an update to a component.
+
+### TypeScript
+- Always use TypeScript for all new code
+- Use strict type checking
+- Define interfaces for all data structures
+- Use type inference when the type is obvious
+- Avoid using "any" type unless absolutely necessary
+
+### Components
+- Use functional components with hooks
+- Group components by feature or domain in the components directory
+- Create reusable UI components in components/ui
+- Keep components small and focused on a single responsibility
+- Use props destructuring for better readability
+
+The `/src/components` directory is organized into several key subfolders:
+- `/src/components/base` - Contains fundamental UI components that are used throughout the application:
+  - AppLoading - Loading indicators and spinners
+  - AppToastContainer - Toast notification components
+  - CoinSide - Coin display components
+  - CoinSpinning - Animated coin components
+  - CopyWrapper - Components for copy functionality
+  - LinkNewTab - Components for external links
+  - Modal - Modal dialog components
+  - Popup - Popup notification components
+
+- `/src/components/features` - Contains components tied to specific application features:
+  - LanguageButton - Language selection components
+  - ThemeButton - Theme switching components
+
+- `/src/components/form` - Contains form-related components:
+  - FieldWrapper - Wrapper components for form fields
+  - controllers - Form control components
+
+- `/src/components/layouts` - Contains layout components:
+  - Header - Application header components
+
+### Styling
+- Use TailwindCSS for styling
+- Follow utility-first approach
+- Use daisyUI components when appropriate
+- Define custom theme configuration in tailwind.config.ts
+- Use consistent color variables defined in theme
+- All colors must be declared or used in tailwind.config.ts
+- Common classes or animation classes must be declared in tailwind.config.ts
+
+### State Management
+- Use React Context for global state
+- Use useState and useReducer for local state
+- Keep state as close as possible to where it's needed
+- Avoid prop drilling by using context or custom hooks
+
+### Forms
+- Use react-hook-form for form handling
+- Use yup for form validation
+- Create reusable form components
+
+### Internationalization
+- Use next-intl for all user-facing text
+- Organize translation files by feature/module in separate directories for each language
+  - Example: `/messages/en/common.json`, `/messages/en/auth.json`
+- Never hardcode user-facing strings
+- Ensure each translation key exists in all language files (en, vi)
+- Use TypeScript interfaces for translation keys to ensure type safety
+- Handle pluralization and variables in translation strings
+- Use formatDate, formatNumber, formatCurrency for locale-appropriate display
+- Create and use custom hooks and components for translations that require parameters
+- Update translation files in parallel when adding new features
+- Consider using tools to automatically extract keys from the codebase
+- Use the provided utility files for internationalization:
+  - For Client Components:
+    - Import and use [useClientTranslations](@/libs/i18n-client)
+    - Example usage:
+      ```typescript
+      import { useClientTranslations } from '@/libs/i18n-client';
+      
+      function MyClientComponent() {
+        const { t } = useClientTranslations();
+        return <div>{t('common.welcome', { name: 'User' })}</div>;
+      }
+      ```
+  - For Server Components:
+    - Import and use [useServerTranslations](@/libs/i18n-server)
+    - Example usage:
+      ```typescript
+      import useServerTranslations from '@/libs/i18n-server';
+      
+      async function MyServerComponent() {
+        const { t } = await useServerTranslations('vi'); // Specify locale
+        return <div>{t('common.welcome', { name: 'User' })}</div>;
+      }
+      ```
+  - Both utilities provide type-safe translation functions that work with the project's translation schema
+  - The translation functions return values that can be used directly in JSX/TSX
+
+### Routing
+- Use Next.js App Router
+- Organize routes using the app directory structure
+- Implement proper error handling with error.tsx files
+- Use loading.tsx for loading states
+
+### API Integration
+- Create dedicated service files for API calls
+- Use TypeScript interfaces for request/response types
+- Implement proper error handling
+- Use environment variables for API endpoints
+
+### Testing
+- Do not automatically write test files unless explicitly requested
+
+### Performance
+- Use Next.js Image component for images
+- Implement code splitting where beneficial
+- Minimize bundle size
+- Use appropriate caching strategies
+
+### Accessibility
+- Follow WCAG 2.1 AA standards
+- Use semantic HTML
+- Ensure proper keyboard navigation
+- Provide appropriate ARIA attributes
+
+### Git Workflow
+- Use descriptive branch names (feature/, bugfix/, etc.)
+- Write clear commit messages
+- Create focused PRs with appropriate descriptions
+- Keep PRs small and manageable
+
+## Project Structure
+- /memory-bank - Project documentation and specifications
+- /app - Main application routes and pages
+- /components - Reusable React components
+- /constants - Application constants
+- /contexts - React context providers
+- /i18n - Internationalization setup and translations
+- /libs - Utility libraries and third-party integrations
+- /types - TypeScript type definitions
+- /utils - Utility functions
